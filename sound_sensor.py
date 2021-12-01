@@ -2,7 +2,7 @@ import time
 import requests
 import sys
 
-sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
+sys.path.append('/home/pi/Dexter/GrovePi/grove_rgb_lcd')
 
 import grovepi
 import grove_rgb_lcd as lcd
