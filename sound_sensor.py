@@ -15,13 +15,14 @@ grovepi.pinMode(sound_sensor,"INPUT")
 
 while True:
     try:
-        # Read the sound level
-        sensor_value = grovepi.analogRead(sound_sensor)
+        # Read the sound level\
+	sensor_value = grovepi.analogRead(sound_sensor)
 
         # SEND VALUE TO COMPUTER
 
         # DELAY FOR NOW, CHECK MIN FOR SOUND SENSOR
-        time.sleep(.05)
+	print("sexiness:", sensor_value)
+	time.sleep(.05)
 
     except IOError:
-        print ("Error")
+	print ("Error")
