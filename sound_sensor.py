@@ -1,5 +1,11 @@
 import time
+import requests
+import sys
+
+sys.path.append('/home/pi/Dexter/GrovePi/Software/Python')
+
 import grovepi
+import grove_rgb_lcd as lcd
 
 # Connect the Grove Sound Sensor to analog port A0
 # SIG,NC,VCC,GND
