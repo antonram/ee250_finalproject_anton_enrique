@@ -17,6 +17,12 @@ grovepi.pinMode(sound_sensor,"INPUT")
 CACHE = ['']*1
 CACHE[0] = '  ' + affirmations_api.AFFIRMATIONS_APP['init']() 
 ind = 0
+counter = 0 # will be to update affirmation every X amount of time
+LCD_LINE_LEN = 16
+
+lcd.setRGB(0,128,0)
+
+colors = [[128,128,128],[128,0,0],[0,128,128],[0,128,0],[0,0,128],[128,0,128],[32,95,128]]
 
 while True:
     try:
@@ -29,7 +35,9 @@ while True:
 	    print("sexiness:", sensor_value)
 
 	    # UPDATE CACHE TO CHANGE QUOTE
-        CACHE[0] = '  ' + affirmations_api.AFFIRMATIONS_APP['init']()
+	    if counter == 50:
+	        counter = 0
+            CACHE[0] = '  ' + affirmations_api.AFFIRMATIONS_APP['init']()
 	    
 	    # DISPLAY API STUFF ON RPI
         # Comment out if you try to debug this on VM
@@ -43,8 +51,10 @@ while True:
 
       
        
-	    print(CACHE[0])
-	    time.sleep(.05)
+	    # print(CACHE[0]) <-- for debugging
+	    counter += 1
+	    # changes backlight to given color from color list (7 items)
+	    lcd.setRGB(colors[counter%7][0],colors[counter%7][1],colors[counter%7][2])
 
     except IOError:
 	    print ("Error")
