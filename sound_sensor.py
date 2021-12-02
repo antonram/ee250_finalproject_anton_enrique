@@ -26,13 +26,15 @@ colors = [[128,128,128],[128,0,0],[0,128,128],[0,128,0],[0,0,128],[128,0,128],[3
 
 while True:
     try:
+        # CHECKLIST:
+        # SEND SENSOR DATA TO COMPUTER
+        # PROCESS DATA
+
+    
         # Read the sound level
 	    sensor_value = grovepi.analogRead(sound_sensor)
 
-        # SEND VALUE TO COMPUTER
-
-        # DELAY FOR NOW, CHECK MIN FOR SOUND SENSOR
-	    print("sexiness:", sensor_value)
+	    # print("sexiness:", sensor_value) <-- for debugging
 
 	    # UPDATE CACHE TO CHANGE QUOTE
 	    if counter == 50:
