@@ -20,13 +20,17 @@ ind = 0
 
 while True:
     try:
-        # Read the sound level\
+        # Read the sound level
 	    sensor_value = grovepi.analogRead(sound_sensor)
 
         # SEND VALUE TO COMPUTER
 
         # DELAY FOR NOW, CHECK MIN FOR SOUND SENSOR
 	    print("sexiness:", sensor_value)
+
+	    # UPDATE CACHE TO CHANGE QUOTE
+        CACHE[0] = '  ' + affirmations_api.AFFIRMATIONS_APP['init']()
+	    
 	    # DISPLAY API STUFF ON RPI
         # Comment out if you try to debug this on VM
 	    lcd.setText.norefresh(CACHE[0][ind:ind+LCD_LINE_LEN])
