@@ -39,6 +39,7 @@ while True:
 	    # UPDATE CACHE TO CHANGE QUOTE
 	    if counter == 50:
 			lcd.setText('TAKE A BREAK')
+			ind = 0
         	CACHE[0] = ' ' + affirmations_api.AFFIRMATIONS_APP['init']()
 	        counter = 0
 			#CACHE[0] = '  ' + affirmations_api.AFFIRMATIONS_APP['init']()
