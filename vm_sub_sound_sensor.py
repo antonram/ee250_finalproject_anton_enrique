@@ -33,9 +33,17 @@ def rpi2_sound_callback(client, userdata, msg):
 
 def remove_max(values):
     max = -1
+    for i in range(len(values)):
+        if values[i] > max:
+            max = values[i]
+    values.remove(max)
 
 def remove_min(values):
     min = 10000
+    for i in range(len(values)):
+        if values[i] < min:
+            min = values[i]
+    values.remove(min)
 
 if __name__ == '__main__':
     #this section is covered in publisher_and_subscriber_example.py
@@ -47,8 +55,11 @@ if __name__ == '__main__':
 
     while True:
         time.sleep(1)
-        if len(rpi1_values) == 5 & len(rpi2_values) == 5:
+        if len(rpi1_values) == 5:
             remove_max(rpi1_values)
             remove_max(rpi2_values)
             remove_min(rpi1_values)
             remove_min(rpi2_values)
+            print(rpi1_values)
+            print(rpi2_values)
+        
