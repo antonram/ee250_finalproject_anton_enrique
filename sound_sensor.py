@@ -38,9 +38,9 @@ while True:
 
 	    # UPDATE CACHE TO CHANGE QUOTE
 	    if counter == 50:
+        	CACHE[0] = ' ' + affirmations_api.AFFIRMATIONS_APP['init']()
 	        counter = 0
-            CACHE[0] = '  ' + affirmations_api.AFFIRMATIONS_APP['init']()
-	    
+            #CACHE[0] = '  ' + affirmations_api.AFFIRMATIONS_APP['init']()
 	    # DISPLAY API STUFF ON RPI
         # Comment out if you try to debug this on VM
 	    lcd.setText.norefresh(CACHE[0][ind:ind+LCD_LINE_LEN])
