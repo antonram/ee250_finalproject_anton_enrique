@@ -57,6 +57,7 @@ while True:
 	    counter += 1
 	    # changes backlight to given color from color list (7 items)
 	    lcd.setRGB(colors[counter%7][0],colors[counter%7][1],colors[counter%7][2])
+		time.sleep(.1)
 
     except IOError:
 	    print ("Error")
