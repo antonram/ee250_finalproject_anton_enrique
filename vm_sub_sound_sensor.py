@@ -34,14 +34,14 @@ def rpi2_sound_callback(client, userdata, msg):
 def remove_max(values):
     max = -1
     for i in range(len(values)):
-        if values[i] > max:
+        if int(values[i]) > max:
             max = values[i]
     values.remove(max)
 
 def remove_min(values):
     min = 10000
     for i in range(len(values)):
-        if values[i] < min:
+        if int(values[i]) < min:
             min = values[i]
     values.remove(min)
 
