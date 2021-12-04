@@ -122,7 +122,7 @@ if __name__ == '__main__':
                 progress += 0
             y.append(progress)
             x.append(rounds)
-        if progress == 5 or progress == -5:
+        if progress == 10 or progress == -10:
             break
     plt.plot(x,y)
     plt.xlabel('time')
