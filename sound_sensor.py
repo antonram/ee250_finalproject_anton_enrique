@@ -14,9 +14,10 @@ sound_sensor = 0
 
 grovepi.pinMode(sound_sensor,"INPUT")
 
+# loads initial affirmation
 CACHE = ['']*1
 CACHE[0] = '  ' + affirmations_api.AFFIRMATIONS_APP['init']() 
-ind = 0
+ind = 0 # will be to set up lcd scroll
 counter = 0 # will be to update affirmation every X amount of time
 LCD_LINE_LEN = 16
 
@@ -32,11 +33,11 @@ while True:
 	    sensor_value = grovepi.analogRead(sound_sensor)
 
 
-	    # UPDATE CACHE TO CHANGE QUOTE
+	    # UPDATE CACHE TO CHANGE QUOTE, and let user take a quick break
 	    if counter == 50:
 			lcd.setText('TAKE A BREAK')
-			ind = 0
-        	CACHE[0] = ' ' + affirmations_api.AFFIRMATIONS_APP['init']()
+			ind = 0 # resets scroll
+        	CACHE[0] = ' ' + affirmations_api.AFFIRMATIONS_APP['init']() # plays next affirmation
 	        counter = 0
 	    # DISPLAY API STUFF ON RPI
 	    lcd.setText_norefresh(CACHE[0][ind:ind+LCD_LINE_LEN])
