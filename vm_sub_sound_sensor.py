@@ -49,15 +49,13 @@ def remove_min(values):
             min = values[i]
     values.remove(min)
 
-winner = 0
 
-def animate(i, x, y, x_val, y_val):
-    x_val[0] += 1
-    global winner
-    y_val[0] += winner
-    winner = 0
-    x.append(x_val[0])
-    y.append(y_val[0])
+def animate(i, x, y, x_val, y_val, winner):
+    x_val[-1] += 1
+    y_val[-1] += winner
+    print("ani winner:", winner)
+    x.append(x_val[-1])
+    y.append(y_val[-1])
 
     ax.clear()
     ax.plot(x,y)
@@ -78,35 +76,38 @@ if __name__ == '__main__':
 
     x = []
     y = []
+    winner = 0
     x_val = [-1]
     y_val = [-1]
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
-    global winner
 
     counter = 0
 
-    ani = animation.FuncAnimation(fig, animate, fargs=(x,y,x_val,y_val), interval=1000)
+    ani = animation.FuncAnimation(fig, animate, fargs=(x,y,x_val,y_val, winner), interval=1000)
     plt.show()
 
     while True:
         time.sleep(1)
-        if len(rpi1_values) == 5 and len(rpi2_values) == 5:
+        if len(rpi1_values) >= 5 and len(rpi2_values) >= 5:
             remove_max(rpi1_values)
             remove_max(rpi2_values)
             remove_min(rpi1_values)
             remove_min(rpi2_values)
             print(rpi1_values)
             print(rpi2_values)
+            rpi1_values = []
+            rpi2_values = []
 
-            avg1 = sum(rpi1_values)/3
-            avg2 = sum(rpi2_values)/3
+            avg1 = sum(rpi1_values)/len(rpi1_values)
+            avg2 = sum(rpi2_values)/len(rpi2_values)
             if avg1 > avg2:
                 winner = 1
             elif avg2 > avg1:
                 winner = -1
             else:
-                winner = 0
+                winner  = 0
+            print("winner:", winner)
 
 
 
