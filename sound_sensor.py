@@ -26,15 +26,11 @@ colors = [[128,128,128],[128,0,0],[0,128,128],[0,128,0],[0,0,128],[128,0,128],[3
 
 while True:
     try:
-        # CHECKLIST:
-        # SEND SENSOR DATA TO COMPUTER
-        # PROCESS DATA
 
     
         # Read the sound level
 	    sensor_value = grovepi.analogRead(sound_sensor)
 
-	    # print("sexiness:", sensor_value) <-- for debugging
 
 	    # UPDATE CACHE TO CHANGE QUOTE
 	    if counter == 50:
@@ -42,9 +38,7 @@ while True:
 			ind = 0
         	CACHE[0] = ' ' + affirmations_api.AFFIRMATIONS_APP['init']()
 	        counter = 0
-			#CACHE[0] = '  ' + affirmations_api.AFFIRMATIONS_APP['init']()
 	    # DISPLAY API STUFF ON RPI
-        # Comment out if you try to debug this on VM
 	    lcd.setText_norefresh(CACHE[0][ind:ind+LCD_LINE_LEN])
 
         # ADDED SCROLL

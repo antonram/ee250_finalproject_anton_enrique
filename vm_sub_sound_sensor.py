@@ -8,7 +8,6 @@ import paho.mqtt.client as mqtt
 import time
 
 import matplotlib.pyplot as plt
-# import matplotlib.animation as animation
 
 
 rpi1_values = []
@@ -51,22 +50,6 @@ def remove_min(values):
             min = values[i]
     values.remove(min)
 
-'''
-def animate(i, x, y, x_val, y_val, winner):
-    x_val[-1] += 1
-    y_val[-1] += winner
-    print("ani winner:", winner)
-    x.append(x_val[-1])
-    y.append(y_val[-1])
-
-    ax.clear()
-    ax.plot(x,y)
-
-    #plt.xticks(rotations=45, ha='right')
-    plt.subplots_adjust(bottom=0.30)
-    plt.title('Sexiness')
-    plt.ylabel('Intensity')
-'''
 
 if __name__ == '__main__':
     #this section is covered in publisher_and_subscriber_example.py
@@ -76,20 +59,6 @@ if __name__ == '__main__':
     client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
     client.loop_start()
 
-    '''
-    x = []
-    y = []
-    winner = 0
-    x_val = [-1]
-    y_val = [-1]
-    fig = plt.figure()
-    ax = fig.add_subplot(1,1,1)
-
-    counter = 0
-
-    ani = animation.FuncAnimation(fig, animate, fargs=(x,y,x_val,y_val, winner), interval=1000)
-    plt.show()
-    '''
     progress = 0
     rounds = -1
     x = []
@@ -98,18 +67,14 @@ if __name__ == '__main__':
     while True:
         time.sleep(1)
         if len(rpi1_values) >= 5 and len(rpi2_values) >= 5:
-        #if len(rpi1_values) == 5:
             rounds += 1
             remove_max(rpi1_values)
             remove_max(rpi2_values)
             remove_min(rpi1_values)
             remove_min(rpi2_values)
-            #print(rpi1_values)
-            #print(rpi2_values)
             
             avg1 = sum(rpi1_values)/len(rpi1_values)
             avg2 = sum(rpi2_values)/len(rpi2_values)
-            #avg2 = 5
             
             rpi1_values = []
             rpi2_values = []
@@ -122,7 +87,7 @@ if __name__ == '__main__':
                 progress += 0
             y.append(progress)
             x.append(rounds)
-        if progress == 6 or progress == -6:
+        if progress == 5 or progress == -5:
             break
     plt.plot(x,y)
     plt.xlabel('time')
